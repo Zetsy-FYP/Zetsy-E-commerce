@@ -61,7 +61,57 @@ $product->image=$imageName;
 
 $product->save();
 
-return redirect()->back();
+return redirect()->back()->with('message','product Added Successfully!');
+
+}
+
+public function show_products()
+{
+
+  $product = product::all();
+  return view('admin.show_products',compact('product'));
+}
+
+public function delete_product($id)
+{
+  $product = product::find($id);
+
+  $product-> delete();
+  return redirect()->back()->with('message','product deleted successfully');
+}
+
+public function update_product($id)
+{
+  $product = product::find($id);
+  $category = category::all();
+  return view('admin.update_product',compact('product','category'));
+}
+
+public function update_product_confirm(Request $request,$id)
+{
+
+  $product = product::find($id);
+
+$product->title = $request->title;
+$product->description = $request->description;
+$product->price = $request->price;
+$product->quantity = $request->quantity;
+$product->discount_price = $request->dis_price;
+$product->category = $request->category;
+
+$image = $request->image;
+if($image)
+{
+$imageName = time().'.'.$image->getClientOriginalExtension();
+$request->image->move('product',$imageName);
+$product->image=$imageName;
+}
+
+$product->save();
+
+return redirect()->back()->with('message','product updated Successfully!');
+
+
 
 }
 

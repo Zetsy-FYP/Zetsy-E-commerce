@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Zetsy-Ecommerce Admin</title>
+    <base href="/public">
 
     <style>
         .div_center{
@@ -73,47 +75,51 @@
         </div>
         @endif
         <div class="div_center">
-            <h1 class="h1_font">Add Product</h1>
-            <form action="{{url('/add_product')}}" method="post" enctype="multipart/form-data">
+            <h1 class="h1_font">update product</h1>
+            <form action="{{url('/update_product_confirm',$product->id)}}" method="post" enctype="multipart/form-data">
 
                 @csrf
                 <div class="input_div">
                     <label for="title">Product Title :</label>
-                    <input type="text" class="input_value" name="title" placeholder="Enter product title" required>
+                    <input type="text" class="input_value" name="title" placeholder="Enter product title" value="{{$product->title}}" required>
                 </div>
                 <div class="input_div">
                     <label for="title">Product Description :</label>
-                    <input type="text" class="input_value" name="description" placeholder="Enter product description" required>
+                    <input type="text" class="input_value" name="description" placeholder="Enter product description" value="{{$product->description}}" required>
                 </div>
                 <div class="input_div">
                     <label for="price">Product price :</label>
-                    <input type="number" class="input_value" name="price" placeholder="Enter product price" required>
+                    <input type="number" class="input_value" name="price" placeholder="Enter product price" value="{{$product->price}}" required>
                 </div>
                 <div class="input_div">
                     <label for="title">Product quantity :</label>
-                    <input type="number" class="input_value" name="quantity" placeholder="Enter quantity" required >
+                    <input type="number" class="input_value" name="quantity" placeholder="Enter quantity" value="{{$product->quantity}}" required >
                 </div>
                 <div class="input_div">
                     <label for="title">Discount price :</label>
-                    <input type="number" class="input_value" name="dis_price" placeholder="Enter discount price" required>
+                    <input type="number" class="input_value" name="dis_price" placeholder="Enter discount price" value="{{$product->discount_price}}" required>
                 </div>
                 <div class="input_div">
                     <label for="title">Product Category :</label>
                     <select name="category" id="" class="input_value" required>
-                        <option value="" selected>Add a category</option>
+                        <option value="value="{{$product->category}}"" selected>{{$product->category}}</option>
                         @foreach($category as $category)
                         <option value="{{$category->category_name}}">{{$category->category_name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="input_div">
+                    <label for="title">Current product image</label>
+                    <img src="/product/{{$product->image}}" alt="" style="margin:auto; height: 70px; width:70px;">
+                </div>
+                <div class="input_div">
                     <label for="title">Choose product image</label>
-                    <input type="file" class="input_value" name="image" accept=".jpg,.jpeg,.png" required>
+                    <input type="file" class="input_value" name="image" accept=".jpg,.jpeg,.png">
                 </div>
 
                 <div class="input_div">
                     
-                    <input type="submit"  name="submit" class="btn btn-success">
+                    <input type="submit"  name="submit" class="btn btn-primary" value="update">
                 </div>
             </form>
         
