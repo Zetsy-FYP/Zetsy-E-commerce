@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 
 
@@ -33,6 +34,35 @@ public function delete_category($id)
    $data = Category::find($id);
    $data->delete();
    return redirect()->back()->with('delete_message','category deleted!');
+}
+
+public function view_product()
+{
+  $category = category::all();
+
+
+  return view('admin.product',compact('category'));
+}
+
+public function add_product(Request $request)
+{
+$product = new Product;
+$product->title = $request->title;
+$product->description = $request->description;
+$product->price = $request->price;
+$product->quantity = $request->quantity;
+$product->discount_price = $request->dis_price;
+$product->category = $request->category;
+
+$image = $request->image;
+$imageName = time().'.'.$image->getClientOriginalExtension();
+$request->image->move('product',$imageName);
+$product->image=$imageName;
+
+$product->save();
+
+return redirect()->back();
+
 }
 
 
