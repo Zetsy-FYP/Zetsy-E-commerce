@@ -80,7 +80,7 @@
                         <th>Product Title</th>
                         <th>Description</th>
                         <th>Quantity</th>
-                        <th>Categoty</th>
+                        <th>Category</th>
                         <th>Price</th>
                         <th>Discount Price</th>
                         <th>Product Image</th>

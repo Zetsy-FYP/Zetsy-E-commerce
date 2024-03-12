@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        return  view('home.userpage');
+        $product = product::paginate(6);
+        return  view('home.userpage',compact('product'));
     }
 
 
@@ -33,8 +36,11 @@ if(!empty(Auth::user()->usertype) && Auth::user()->usertype==1)
 
 else
 {
-    return view('home.userpage');
+    $product = product::paginate(6);
+        return  view('home.userpage',compact('product'));
 }
+
+
 
 
     }

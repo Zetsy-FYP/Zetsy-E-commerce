@@ -97,7 +97,7 @@
                 </div>
                 <div class="input_div">
                     <label for="title">Discount price :</label>
-                    <input type="number" class="input_value" name="dis_price" placeholder="Enter discount price" value="{{$product->discount_price}}" required>
+                    <input type="number" class="input_value" name="dis_price" placeholder="Enter discount price" value="{{$product->discount_price}}">
                 </div>
                 <div class="input_div">
                     <label for="title">Product Category :</label>
